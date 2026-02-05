@@ -13,8 +13,20 @@
 }
 
 .profile-card_name {
-    display: grid;
-    gap: 8px;
+  display: grid;
+  gap: 8px;
+}
+
+.h6 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 }
 
 .profile-card_tags {

@@ -20,6 +20,10 @@
   }
 }
 
+.list-subscribers {
+  margin: 20px;
+}
+
 .main-menu {
   padding: 0;
   list-style: none;
@@ -59,35 +63,6 @@
   }
 }
 
-.list-subscribers {
-  margin: 20px;
-}
-
-p.medium-txt {
-  margin-bottom: 20px;
-}
-
-.subscribers {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-left: 20px;
-
-  svg {
-    margin-top: 10px;
-  }
-}
-
-.link-subscribers {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-.icon-subscribers {
-  width: 18px;
-  height: 18px;
-}
-
 .sidebar-footer {
   background: var(--hover-color);
   border-radius: 2px;
@@ -109,7 +84,8 @@ p.medium-txt {
     font-weight: 700;
   }
 
-  .settings-btn, .logout-btn {
+  .settings-btn,
+  .logout-btn {
     transition: all 0.3s ease;
     svg {
       width: 14px;
