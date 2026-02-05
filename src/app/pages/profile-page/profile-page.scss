@@ -1,0 +1,49 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.settings-btn {
+  width: 174px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-right: 60px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    svg {
+      color: var(--light-color);
+    }
+  }
+}
+
+.settings-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--dark-color);
+}
+
+.profile-body {
+  padding: 24px;
+  display: grid;
+  gap: 64px;
+  grid-template-columns: 1fr 350px;
+}
+
+.title {
+  margin-bottom: 16px;
+  font-style: 18px;
+  font-weight: 800;
+}
+
+.profile-card_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}

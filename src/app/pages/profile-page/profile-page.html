@@ -1,0 +1,29 @@
+@if (profile) {
+  <header class="profile-header">
+    <app-profile-header [profile]="profile"></app-profile-header>
+
+    <a class="btn settings-btn" [routerLink]="['/settings']">
+      Редагувати
+      <svg icon="settings" class="settings-icon"></svg>
+    </a>
+  </header>
+
+  <main class="profile-body">
+    <app-posts-page></app-posts-page>
+
+    <div>
+      <h3 class="title">Інформація</h3>
+      <div class="profile-card_tags">
+        <div class="card-tag email-tag">{{ profile.email }}</div>
+        <div class="card-tag site-tag">{{ profile.website }}</div>
+        <div class="card-tag phone-tag">{{ profile.phone }}</div>
+      </div>
+
+      <h3 class="title">Адреса</h3>
+      <div class="profile-card_adress">
+        {{ profile.address.street }}, {{ profile.address.suite }}, {{ profile.address.city }}
+        {{ profile.address.zipcode }}
+      </div>
+    </div>
+  </main>
+}

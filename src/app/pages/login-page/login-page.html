@@ -1,0 +1,43 @@
+<form action="" class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1 class="h1">Вхід</h1>
+
+  <label class="control-label">
+    Ваш username
+    <input
+      type="text"
+      placeholder="Введіть логін"
+      class="control-input"
+      formControlName="username"
+    />
+    @if (form.controls.username.touched && form.controls.username.invalid) {
+      <small class="error">
+        @if (form.controls.username.errors?.['required']) {
+          Username обовʼязковий
+        }
+        @if (form.controls.username.errors?.['pattern']) {
+          Дозволені лише латинські літери, цифри та ., _, -
+        }
+      </small>
+    }
+  </label>
+
+  <label class="control-label">
+    Ваш email
+    <input type="text" placeholder="Введіть email" class="control-input" formControlName="email" />
+
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <small class="error">
+        @if (form.controls.email.errors?.['required']) {
+          Email обовʼязковий
+        }
+        @if (form.controls.email.errors?.['email']) {
+          Некоректний формат email
+        }
+      </small>
+    }
+  </label>
+
+  <button class="btn btn-shadow" type="submit">Ввійти</button>
+</form>
+
+<img src="/assets/imgs/logo.png" alt="logo" />

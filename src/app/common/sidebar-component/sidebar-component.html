@@ -1,0 +1,41 @@
+<img src="/assets/imgs/logo.png" alt="logo" class="logo" [routerLink]="['/']" />
+
+<div class="list-subscribers">
+  <p class="medium-text">Підписники</p>
+
+  @for (user of users; track user.id) {
+    <app-subscriber-card [user]="user"></app-subscriber-card>
+  }
+</div>
+
+<!-- <div class="subscribers">
+  <a [routerLink]="['/subscribers']" class="link-subscribers medium-text">Усі підписники</a>
+  <svg icon="arrow" class="icon-subscribers"></svg>
+</div> -->
+
+<nav>
+  <ul class="main-menu">
+    @for (item of menuItems; track item.icon) {
+      <li>
+        <button class="menu-item" [routerLink]="['/', item.link]">
+          <svg [icon]="item.icon" [class]="item.icon"></svg>
+          <span>{{ item.label }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</nav>
+
+<footer class="sidebar-footer">
+  @if (me) {
+    <strong class="medium-text"> {{ me.name }} </strong>
+    <div>
+      <a [routerLink]="['/logout']" class="logout-btn">
+        <svg icon="logout" class="logout-icon"></svg>
+      </a>
+      <a [routerLink]="['/settings']" class="settings-btn">
+        <svg icon="settings" class="settings-icon"></svg>
+      </a>
+    </div>
+  }
+</footer>

@@ -1,0 +1,10 @@
+<h2>Пости:</h2>
+
+@for (post of posts; track post.id) {
+  <div class="post">
+    <span>{{ post.title }}</span>
+    <p>
+      {{ post.body }}
+    </p>
+  </div>
+}

@@ -1,0 +1,106 @@
+<app-profile-header [profile]="profile"></app-profile-header>
+
+<div class="profile-form-wrapper">
+  <form action="" class="profile-form" [formGroup]="form">
+    <div>
+      <label for="" class="profile-label">
+        <span>Ім'я</span>
+
+        <input type="text" class="profile-input" formControlName="name" />
+
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <small class="error">
+            @if (form.controls.name.errors?.['required']) {
+              Ім'я обовʼязкове
+            }
+            @if (form.controls.name.errors?.['pattern']) {
+              Дозволені тільки літери українські та англійські
+            }
+          </small>
+        }
+      </label>
+    </div>
+    <div>
+      <label for="" class="profile-label">
+        <span>Username</span>
+
+        <input type="text" class="profile-input" formControlName="username" />
+
+        @if (form.controls.username.touched && form.controls.username.invalid) {
+          <small class="error">
+            @if (form.controls.username.errors?.['required']) {
+              Username обовʼязковий
+            }
+            @if (form.controls.username.errors?.['pattern']) {
+              Дозволені латинські літери, цифри та ., _, -
+            }
+          </small>
+        }
+      </label>
+    </div>
+    <div>
+      <label for="" class="profile-label">
+        <span>Email</span>
+
+        <input type="text" class="profile-input" formControlName="email" />
+
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <small class="error">
+            @if (form.controls.email.errors?.['required']) {
+              Email обовʼязковий
+            }
+            @if (form.controls.email.errors?.['email']) {
+              Некоректний формат email
+            }
+          </small>
+        }
+      </label>
+    </div>
+    <div>
+      <label for="" class="profile-label">
+        <span>Телефон</span>
+
+        <input type="text" class="profile-input" formControlName="phone" />
+
+        @if (form.controls.phone.touched && form.controls.phone.invalid) {
+          <small class="error">
+            @if (form.controls.phone.errors?.['pattern']) {
+              Введіть український номер: +380XXXXXXXXX або 0XXXXXXXXX
+            }
+          </small>
+        }
+      </label>
+    </div>
+
+    <div formGroupName="address">
+      <div class="two-column">
+        <label for="" class="profile-label">
+          <span>Вулиця</span>
+
+          <input type="text" class="profile-input" formControlName="street" />
+        </label>
+        <label for="" class="profile-label">
+          <span>Номер квартири</span>
+
+          <input type="text" class="profile-input" formControlName="suite" />
+        </label>
+      </div>
+      <div class="two-column">
+        <label for="" class="profile-label">
+          <span>Місто</span>
+
+          <input type="text" class="profile-input" formControlName="city" />
+        </label>
+        <label for="" class="profile-label">
+          <span>Індекс</span>
+
+          <input type="text" class="profile-input" formControlName="zipcode" />
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="btns">
+    <button class="btn no-main-btn" [routerLink]="['/profile']">Відмінити</button>
+    <button class="btn" (click)="onSave()">Зберегти</button>
+  </div>
+</div>

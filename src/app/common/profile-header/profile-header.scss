@@ -1,0 +1,22 @@
+:host {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.name {
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.name h2 {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 32px;
+}
+
+.name span {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+}

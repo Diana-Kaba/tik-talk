@@ -1,0 +1,20 @@
+:host {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    grid-gap: 12px;
+    padding: 8px 0;
+    align-items: center;
+}
+
+.name {
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 24px;
+    display: block;
+    white-space: nowrap;
+}
+
+.subscribers {
+    margin-top: 20px;
+}

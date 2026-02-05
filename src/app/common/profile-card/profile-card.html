@@ -1,0 +1,24 @@
+@if (user) {
+  <div class="profile-card">
+    <div class="avatar-name">
+      <div class="profile-card_name">
+        <strong class="h6">{{ user.name }}</strong>
+        <span class="subtitle">{{ user.username }}</span>
+      </div>
+    </div>
+
+    <div class="profile-card_adress">
+      {{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }} {{ user.address.zipcode }}
+    </div>
+
+    <div class="profile-card_tags">
+      <div class="card-tag email-tag">{{ user.email }}</div>
+      <div class="card-tag site-tag">{{ user.website }}</div>
+      <div class="card-tag phone-tag">{{ user.phone }}</div>
+    </div>
+
+    <div class="profile-card_btns">
+      <button class="btn">Підписаться</button>
+    </div>
+</div>
+}

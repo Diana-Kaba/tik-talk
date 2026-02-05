@@ -1,0 +1,25 @@
+.profile-card {
+  border: 1px solid var(--light-color);
+  padding: 32px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+  gap: 32px;
+}
+
+.avatar-name {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 20px;
+}
+
+.profile-card_name {
+    display: grid;
+    gap: 8px;
+}
+
+.profile-card_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}

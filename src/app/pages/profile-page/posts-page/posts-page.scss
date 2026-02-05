@@ -1,0 +1,11 @@
+.post {
+    background-color: var(--dark-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-color);
+
+    span {
+        font-weight: 800;
+        font-size: 16px;
+    }
+}
