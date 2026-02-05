@@ -11,13 +11,11 @@ import { Router } from '@angular/router';
 })
 export class LoginPage {
   authService = inject(Auth);
+  isLoginError = false;
 
   form = new FormGroup({
     username: new FormControl('', {
-      validators: [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9._-]+$/),
-      ],
+      validators: [Validators.required, Validators.pattern(/^[a-zA-Z0-9._-]+$/)],
     }),
     email: new FormControl('', {
       validators: [Validators.required, Validators.email],
@@ -36,7 +34,7 @@ export class LoginPage {
 
           this.authService.saveUser(user);
           this.router.navigate(['']);
-        }
+        } else this.isLoginError = true;
       });
     }
   }

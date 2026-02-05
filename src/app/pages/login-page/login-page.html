@@ -37,6 +37,10 @@
     }
   </label>
 
+  @if (isLoginError && form.valid && form.dirty) {
+      <small class="error">Такого користувача не існує</small>
+    }
+
   <button class="btn" type="submit">Ввійти</button>
 </form>
 
