@@ -61,6 +61,7 @@ export class Settings {
   }
 
   onSave() {
+    this.form.markAllAsTouched(); // вивести всі помилки валідації
     if (this.form.invalid || !this.profile) return;
 
     this.userService.changeProfile(this.form.getRawValue()).subscribe((val: IUser | null) => {
