@@ -4,12 +4,12 @@ import { UsersService } from '../../services/usersservice';
 import { IUser } from '../../interfaces/iuser';
 
 @Component({
-  selector: 'app-search-page',
+  selector: 'app-main-page',
   imports: [ProfileCard],
-  templateUrl: './search-page.html',
-  styleUrl: './search-page.scss'
+  templateUrl: './main-page.html',
+  styleUrl: './main-page.scss'
 })
-export class SearchPage {
+export class MainPage {
   usersService = inject(UsersService);
   users: IUser[] = [];
 
