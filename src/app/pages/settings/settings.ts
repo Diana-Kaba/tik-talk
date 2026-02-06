@@ -25,7 +25,7 @@ export class Settings {
   fb = inject(FormBuilder);
 
   // nonNullable - щоб не перевіряти на null при кожному доступі до значення контролу
-  
+
   form = this.fb.nonNullable.group<IProfileFormControls>({
     name: this.fb.nonNullable.control('', [
       Validators.required,
@@ -40,26 +40,18 @@ export class Settings {
       Validators.required,
       Validators.pattern(/^(\+380|0)\d{9}$/),
     ]),
-    site: this.fb.nonNullable.control('', [
-      Validators.pattern(/^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/),
-    ]),
     address: this.fb.nonNullable.group({
       street: this.fb.nonNullable.control('', []),
       suite: this.fb.nonNullable.control('', []),
       city: this.fb.nonNullable.control('', []),
-      zipcode: this.fb.nonNullable.control('', [
-        Validators.pattern(/^\d{5}$/),
-      ]),
+      zipcode: this.fb.nonNullable.control('', [Validators.pattern(/^\d{5}$/)]),
     }),
   });
 
   constructor() {
-    effect(() => {
-      const user = this.userService.getMe();
-      if (user) this.form.patchValue(user);
-    });
+    // pаповнюємо форму при завантаженні
+    if (this.profile) this.form.patchValue(this.profile);
   }
-
   onSave() {
     this.form.markAllAsTouched(); // вивести всі помилки валідації
     if (this.form.invalid || !this.profile) return;

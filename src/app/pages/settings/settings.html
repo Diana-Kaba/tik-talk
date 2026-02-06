@@ -64,6 +64,9 @@
 
         @if (form.controls.phone.touched && form.controls.phone.invalid) {
           <small class="error">
+            @if (form.controls.phone.errors?.['required']) {
+              Телефон обовʼязковий
+            }
             @if (form.controls.phone.errors?.['pattern']) {
               Введіть український номер: +380XXXXXXXXX або 0XXXXXXXXX
             }
@@ -95,6 +98,13 @@
           <span>Індекс</span>
 
           <input type="text" class="profile-input" formControlName="zipcode" />
+
+          @if (
+            form.controls.address.controls.zipcode.touched &&
+            form.controls.address.controls.zipcode.invalid
+          ) {
+            <small class="error"> Індекс має складатися рівно з 5 цифр </small>
+          }
         </label>
       </div>
     </div>

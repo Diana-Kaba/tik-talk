@@ -5,7 +5,6 @@ export interface IProfileFormControls {
   username: FormControl<string>;
   email: FormControl<string>;
   phone: FormControl<string>;
-  site: FormControl<string>;
   address: FormGroup<{
     street: FormControl<string>;
     suite: FormControl<string>;
