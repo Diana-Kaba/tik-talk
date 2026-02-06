@@ -21,6 +21,8 @@ import { IProfileFormControls } from '../../interfaces/iprofile';
 export class Settings {
   userService = inject(UsersService);
   profile: IUser | null = this.userService.getMe();
+  message: string | null = null;
+  isSaving = false;
 
   fb = inject(FormBuilder);
 
@@ -57,7 +59,14 @@ export class Settings {
     if (this.form.invalid || !this.profile) return;
 
     this.userService.changeProfile(this.form.getRawValue()).subscribe((val: IUser | null) => {
-      if (val) this.profile = val;
+      if (val) {
+        this.profile = val;
+        this.message = 'Профіль успішно оновлено!';
+        this.isSaving = true;
+      } else {
+        this.message = 'Помилка при оновленні профілю. Спробуйте ще раз.';
+        this.isSaving = false;
+      }
     });
   }
 }

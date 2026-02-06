@@ -109,6 +109,12 @@
       </div>
     </div>
   </form>
+  @if (isSaving === true) {
+    <small class="succes message">{{ message }}</small>
+  }
+  @if (isSaving === false) {
+    <small class="error message">{{ message }}</small>
+  }
   <div class="btns">
     <button class="btn no-main-btn" [routerLink]="['/profile']">Відмінити</button>
     <button class="btn" (click)="onSave()">Зберегти</button>
