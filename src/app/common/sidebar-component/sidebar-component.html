@@ -10,14 +10,12 @@
 
 <nav>
   <ul class="main-menu">
-    @for (item of menuItems; track item.icon) {
       <li>
-        <button class="menu-item" [routerLink]="['/', item.link]">
-          <svg [icon]="item.icon" [class]="item.icon"></svg>
-          <span>{{ item.label }}</span>
+        <button class="menu-item" [routerLink]="['/profile']">
+          <svg icon="home" class="home"></svg>
+          <span>Моя сторінка</span>
         </button>
       </li>
-    }
   </ul>
 </nav>
 

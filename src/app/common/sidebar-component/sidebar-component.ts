@@ -18,10 +18,6 @@ export class SidebarComponent {
     this.users = val;
   });
 
-  menuItems = [
-    { icon: 'home', label: 'Моя сторінка', link: 'profile' },
-  ];
-
   me: IUser | null = null;
 
   ngOnInit() {
