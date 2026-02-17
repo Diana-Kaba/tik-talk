@@ -3,12 +3,12 @@ import { inject, Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Auth {
   http = inject(HttpClient);
 
-  private storageKey = 'currentUser';
+  private storageKey = 'me_profile';
 
   get isLoggedIn(): boolean {
     return !!localStorage.getItem(this.storageKey);
@@ -21,7 +21,7 @@ export class Auth {
 
   login(username: string, email: string) {
     return this.http.get<IUser[]>(
-      `https://jsonplaceholder.typicode.com/users?username=${username}&email=${email}`
+      `https://jsonplaceholder.typicode.com/users?username=${username}&email=${email}`,
     );
   }
 
