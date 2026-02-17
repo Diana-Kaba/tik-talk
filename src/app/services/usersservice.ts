@@ -17,9 +17,6 @@ export class UsersService {
   }
 
   getMe(): IUser | null {
-    const saved = localStorage.getItem('me_profile');
-    if (saved) return JSON.parse(saved) as IUser;
-
     const me = this.auth.currentUser;
     if (me) localStorage.setItem('me_profile', JSON.stringify(me));
 
@@ -40,7 +37,6 @@ export class UsersService {
       },
     };
 
-    localStorage.setItem('me_profile', JSON.stringify(updated));
     this.auth.saveUser(updated);
 
     return of(updated);
