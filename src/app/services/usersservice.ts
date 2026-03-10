@@ -13,7 +13,7 @@ export class UsersService {
   auth = inject(Auth);
 
   getTestAccounts() {
-    return this.http.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
+    return this.http.get<IUser[]>('http://localhost:3000/api/users');
   }
 
   getMe(): IUser | null {
@@ -31,10 +31,6 @@ export class UsersService {
     const updated: IUser = {
       ...current,
       ...profile,
-      address: {
-        ...current.address,
-        ...profile.address,
-      },
     };
 
     this.auth.saveUser(updated);
@@ -44,6 +40,6 @@ export class UsersService {
   }
 
   getTestPosts() {
-    return this.http.get<IPost[]>('https://jsonplaceholder.typicode.com/posts/?_limit=7');
+    return this.http.get<IPost[]>('http://localhost:3000/api/posts');
   }
 }

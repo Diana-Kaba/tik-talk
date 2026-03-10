@@ -2,9 +2,8 @@
 
 @for (post of posts; track post.id) {
   <div class="post">
-    <span>{{ post.title }}</span>
-    <p>
-      {{ post.body }}
-    </p>
+    <span>{{ post.name }} ({{ post.username }})</span>
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.body }}</p>
   </div>
 }

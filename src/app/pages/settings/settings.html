@@ -75,38 +75,17 @@
       </label>
     </div>
 
-    <div formGroupName="address">
-      <div class="two-column">
-        <label for="" class="profile-label">
-          <span>Вулиця</span>
+    <div class="two-column">
+      <label for="" class="profile-label">
+        <span>Місто</span>
 
-          <input type="text" class="profile-input" formControlName="street" />
-        </label>
-        <label for="" class="profile-label">
-          <span>Номер квартири</span>
+        <input type="text" class="profile-input" formControlName="city" />
+      </label>
+      <label for="" class="profile-label">
+        <span>Вулиця</span>
 
-          <input type="text" class="profile-input" formControlName="suite" />
-        </label>
-      </div>
-      <div class="two-column">
-        <label for="" class="profile-label">
-          <span>Місто</span>
-
-          <input type="text" class="profile-input" formControlName="city" />
-        </label>
-        <label for="" class="profile-label">
-          <span>Індекс</span>
-
-          <input type="text" class="profile-input" formControlName="zipcode" />
-
-          @if (
-            form.controls.address.controls.zipcode.touched &&
-            form.controls.address.controls.zipcode.invalid
-          ) {
-            <small class="error"> Індекс має складатися рівно з 5 цифр </small>
-          }
-        </label>
-      </div>
+        <input type="text" class="profile-input" formControlName="street" />
+      </label>
     </div>
   </form>
   @if (isSaving === true) {

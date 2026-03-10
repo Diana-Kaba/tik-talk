@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { UsersService } from '../../../services/usersservice';
 import { IPost } from '../../../interfaces/ipost';
 
@@ -11,9 +11,12 @@ import { IPost } from '../../../interfaces/ipost';
 export class PostsPage {
   userService = inject(UsersService);
   posts: IPost[] = [];
-  constructor() {
+  @Input() userId?: number;
+
+  ngOnInit() {
     this.userService.getTestPosts().subscribe((val) => {
-      this.posts = val;
+      if (this.userId) this.posts = val.filter((post) => post.user_id === this.userId);
+      else this.posts = val;
     });
   }
 }

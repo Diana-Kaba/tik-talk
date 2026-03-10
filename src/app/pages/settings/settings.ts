@@ -1,9 +1,7 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProfileHeader } from '../../common/profile-header/profile-header';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -42,12 +40,8 @@ export class Settings {
       Validators.required,
       Validators.pattern(/^(\+380|0)\d{9}$/),
     ]),
-    address: this.fb.nonNullable.group({
-      street: this.fb.nonNullable.control('', []),
-      suite: this.fb.nonNullable.control('', []),
-      city: this.fb.nonNullable.control('', []),
-      zipcode: this.fb.nonNullable.control('', [Validators.pattern(/^\d{5}$/)]),
-    }),
+    city: this.fb.nonNullable.control('', []),
+    street: this.fb.nonNullable.control('', []),
   });
 
   constructor() {

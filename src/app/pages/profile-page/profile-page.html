@@ -9,20 +9,19 @@
   </header>
 
   <main class="profile-body">
-    <app-posts-page></app-posts-page>
+    <app-posts-page [userId]="profile.id"></app-posts-page>
 
     <div>
       <h3 class="title">Інформація</h3>
       <div class="profile-card_tags">
         <div class="card-tag email-tag">{{ profile.email }}</div>
-        <div class="card-tag site-tag">{{ profile.address.city }}</div>
+        <div class="card-tag site-tag">{{ profile.city }}</div>
         <div class="card-tag phone-tag">{{ profile.phone}}</div>
       </div>
 
       <h3 class="title">Адреса</h3>
       <div class="profile-card_adress">
-        {{ profile.address.street }}, {{ profile.address.suite }}, {{ profile.address.city }}
-        {{ profile.address.zipcode }}
+        {{ profile.city }}, {{ profile.street }}
       </div>
     </div>
   </main>

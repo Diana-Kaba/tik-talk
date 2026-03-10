@@ -21,7 +21,7 @@ export class Auth {
 
   login(username: string, email: string) {
     return this.http.get<IUser[]>(
-      `https://jsonplaceholder.typicode.com/users?username=${username}&email=${email}`,
+      `http://localhost:3000/api/login?username=${username}&email=${email}`,
     );
   }
 

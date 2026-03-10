@@ -8,12 +8,11 @@
     </div>
 
     <div class="profile-card_adress">
-      {{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }} {{ user.address.zipcode }}
+      {{ user.city }}, {{ user.street }}
     </div>
 
     <div class="profile-card_tags">
       <div class="card-tag email-tag">{{ user.email }}</div>
-      <div class="card-tag site-tag">{{ user.address.city }}</div>
       <div class="card-tag phone-tag">{{ user.phone }}</div>
     </div>
 
