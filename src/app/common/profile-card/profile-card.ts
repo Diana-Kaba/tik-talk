@@ -36,10 +36,12 @@ export class ProfileCard {
     if (this.isSubscribed) {
       this.usersService.unsubscribe(this.me.id, this.user.id).subscribe(() => {
         this.isSubscribed = false;
+        this.usersService.subscriptionChanged.next();
       });
     } else {
       this.usersService.subscribe(this.me.id, this.user.id).subscribe(() => {
         this.isSubscribed = true;
+        this.usersService.subscriptionChanged.next();
       });
     }
   }

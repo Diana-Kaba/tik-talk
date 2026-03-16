@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from '../auth/auth';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { IPost } from '../interfaces/ipost';
 
 @Injectable({
@@ -11,6 +11,8 @@ import { IPost } from '../interfaces/ipost';
 export class UsersService {
   http = inject(HttpClient);
   auth = inject(Auth);
+
+  public subscriptionChanged = new Subject<void>();
 
   getTestAccounts() {
     return this.http.get<IUser[]>('http://localhost:3000/api/users');

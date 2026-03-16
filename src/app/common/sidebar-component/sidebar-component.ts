@@ -22,9 +22,15 @@ export class SidebarComponent {
 
   ngOnInit() {
     this.me = this.usersService.getMe();
+    this.loadList();
+    this.usersService.subscriptionChanged.subscribe(() => {
+      this.loadList();
+    });
+  }
 
+  loadList() {
     if (this.me) {
-      this.usersService.getSubscribers(this.me.id).subscribe((val) => {
+      this.usersService.getSubscriptions(this.me.id).subscribe((val) => {
         this.users = val;
       });
     }

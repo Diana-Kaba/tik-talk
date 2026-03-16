@@ -1,13 +1,14 @@
 <img src="/assets/imgs/logo.png" alt="logo" class="logo" [routerLink]="['/']" />
 
-<div class="list-subscribers">
-  <p class="medium-text">Підписники</p>
+@if (users.length > 0) {
+  <div class="list-subscribers">
+    <p class="medium-text">Підписки</p>
 
-  @for (user of users; track user.id) {
-    <app-subscriber-card [user]="user"></app-subscriber-card>
-  }
-</div>
-
+    @for (user of users; track user.id) {
+      <app-subscriber-card [user]="user"></app-subscriber-card>
+    }
+  </div>
+}
 <nav>
   <ul class="main-menu">
     <li>
