@@ -7,16 +7,19 @@ import { IUser } from '../../interfaces/iuser';
   selector: 'app-main-page',
   imports: [ProfileCard],
   templateUrl: './main-page.html',
-  styleUrl: './main-page.scss'
+  styleUrl: './main-page.scss',
 })
 export class MainPage {
   usersService = inject(UsersService);
   users: IUser[] = [];
+  me: IUser | null = null;
 
-  constructor() {
-    this.usersService.getTestAccounts()
-    .subscribe(val => {
-      this.users = val;
+  ngOnInit() {
+    this.me = this.usersService.getMe();
+
+    this.usersService.getTestAccounts().subscribe((val) => {
+      if (this.me) this.users = val.filter((user) => user.id !== this.me!.id);
+      else this.users = val;
     });
   }
 }
