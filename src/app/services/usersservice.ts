@@ -42,4 +42,20 @@ export class UsersService {
   getTestPosts() {
     return this.http.get<IPost[]>('http://localhost:3000/api/posts');
   }
+
+  getSubscribers(userId: number) {
+    return this.http.get<IUser[]>(`http://localhost:3000/api/users/${userId}/subscribers`);
+  }
+
+  getSubscriptions(userId: number) {
+    return this.http.get<IUser[]>(`http://localhost:3000/api/users/${userId}/subscriptions`);
+  }
+
+  subscribe(followerId: number, followedId: number) {
+    return this.http.post('http://localhost:3000/api/subscribe', { follower_id: followerId, followed_id: followedId });
+  }
+
+  unsubscribe(followerId: number, followedId: number) {
+    return this.http.delete(`http://localhost:3000/api/unsubscribe?follower_id=${followerId}&followed_id=${followedId}`);
+  }
 }

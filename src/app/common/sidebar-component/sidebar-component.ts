@@ -22,5 +22,11 @@ export class SidebarComponent {
 
   ngOnInit() {
     this.me = this.usersService.getMe();
+
+    if (this.me) {
+      this.usersService.getSubscribers(this.me.id).subscribe((val) => {
+        this.users = val;
+      });
+    }
   }
 }

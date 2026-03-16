@@ -7,9 +7,7 @@
       </div>
     </div>
 
-    <div class="profile-card_adress">
-      {{ user.city }}, {{ user.street }}
-    </div>
+    <div class="profile-card_adress">{{ user.city }}, {{ user.street }}</div>
 
     <div class="profile-card_tags">
       <div class="card-tag email-tag">{{ user.email }}</div>
@@ -17,7 +15,11 @@
     </div>
 
     <div class="profile-card_btns">
-      <button class="btn">Підписаться</button>
+      @if (me && me.id !== user.id) {
+        <button class="btn" (click)="toggleSubscription()">
+          {{ isSubscribed ? 'Відписатися' : 'Підписатися' }}
+        </button>
+      }
     </div>
-</div>
+  </div>
 }

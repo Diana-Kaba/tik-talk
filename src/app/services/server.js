@@ -62,3 +62,49 @@ app.get('/api/login', (req, res) => {
         res.json(results);
     });
 });
+
+// отримуємо підписників
+app.get('/api/users/:id/subscribers', (req, res) => {
+    const sql = `
+        SELECT users.* FROM users
+        JOIN subscriptions ON users.id = subscriptions.follower_id
+        WHERE subscriptions.followed_id = ?
+    `;
+    db.query(sql, [req.params.id], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
+// отримуємо підписки
+app.get('/api/users/:id/subscriptions', (req, res) => {
+    const sql = `
+        SELECT users.* FROM users
+        JOIN subscriptions ON users.id = subscriptions.followed_id
+        WHERE subscriptions.follower_id = ?
+    `;
+    db.query(sql, [req.params.id], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(results);
+    });
+});
+
+// підписуємося
+app.post('/api/subscribe', (req, res) => {
+    const { follower_id, followed_id } = req.body;
+    const sql = 'INSERT INTO subscriptions (follower_id, followed_id) VALUES (?, ?)';
+    db.query(sql, [follower_id, followed_id], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true });
+    });
+});
+
+// відписуємося
+app.delete('/api/unsubscribe', (req, res) => {
+    const { follower_id, followed_id } = req.query;
+    const sql = 'DELETE FROM subscriptions WHERE follower_id = ? AND followed_id = ?';
+    db.query(sql, [follower_id, followed_id], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true });
+    });
+});
