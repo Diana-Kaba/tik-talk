@@ -23,6 +23,10 @@ db.connect((err) => {
   console.log('Успішно підключено до бази даних MySQL.');
 });
 
+// запускаємо сервер
+app.listen(port, () => {
+  console.log(`Сервер працює на адресі: http://localhost:${port}`);
+});
 
 // отримуємо всіх користувачів
 app.get('/api/users', (req, res) => {
@@ -47,10 +51,6 @@ app.get('/api/posts', (req, res) => {
   });
 });
 
-// запускаємо сервера
-app.listen(port, () => {
-  console.log(`Сервер працює на адресі: http://localhost:${port}`);
-});
 
 // авторизація користувача
 app.get('/api/login', (req, res) => {
@@ -60,6 +60,23 @@ app.get('/api/login', (req, res) => {
     db.query(sql, [username, email], (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results);
+    });
+});
+
+// оновлюємо профіль у БД
+app.patch('/api/users/:id', (req, res) => {
+    const userId = req.params.id;
+    const { name, username, email, phone, city, street } = req.body;
+
+    const sql = `
+        UPDATE users 
+        SET name = ?, username = ?, email = ?, phone = ?, city = ?, street = ?
+        WHERE id = ?
+    `;
+
+    db.query(sql, [name, username, email, phone, city, street, userId], (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ success: true });
     });
 });
 

@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from '../auth/auth';
-import { of, Subject } from 'rxjs';
+import { map, of, Subject } from 'rxjs';
 import { IPost } from '../interfaces/ipost';
 
 @Injectable({
@@ -26,20 +26,19 @@ export class UsersService {
   }
 
   changeProfile(profile: Partial<IUser>) {
-    // partial - не всі поля обов'язкові
     const current = this.getMe();
-    if (!current) throw new Error('Ви не зареєстровані');;
+    if (!current) throw new Error('Ви не зареєстровані');
+    const updated: IUser = { ...current, ...profile };
 
-    const updated: IUser = {
-      ...current,
-      ...profile,
-    };
-
-    this.auth.saveUser(updated);
-
-    return of(updated);
-    // of - створює Observable з переданого значення
+    return this.http.patch(`http://localhost:3000/api/users/${current.id}`, profile).pipe(
+      map(() => {
+        this.auth.saveUser(updated);
+        return updated;
+      }),
+    );
   }
+  // patch - запит на часткове оновлення
+  // pipe - ловимо дані перед їх отриманням для застосування функцій
 
   getTestPosts() {
     return this.http.get<IPost[]>('http://localhost:3000/api/posts');
@@ -54,10 +53,15 @@ export class UsersService {
   }
 
   subscribe(followerId: number, followedId: number) {
-    return this.http.post('http://localhost:3000/api/subscribe', { follower_id: followerId, followed_id: followedId });
+    return this.http.post('http://localhost:3000/api/subscribe', {
+      follower_id: followerId,
+      followed_id: followedId,
+    });
   }
 
   unsubscribe(followerId: number, followedId: number) {
-    return this.http.delete(`http://localhost:3000/api/unsubscribe?follower_id=${followerId}&followed_id=${followedId}`);
+    return this.http.delete(
+      `http://localhost:3000/api/unsubscribe?follower_id=${followerId}&followed_id=${followedId}`,
+    );
   }
 }
