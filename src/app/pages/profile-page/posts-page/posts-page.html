@@ -1,9 +1,11 @@
-<h2>Пости:</h2>
+@if (posts.length != 0) {
+  <h2>Пости:</h2>
 
-@for (post of posts; track post.id) {
-  <div class="post">
-    <span>{{ post.name }} ({{ post.username }})</span>
-    <h4>{{ post.title }}</h4>
-    <p>{{ post.body }}</p>
-  </div>
+  @for (post of posts; track post.id) {
+    <div class="post">
+      <span>{{ post.name }} ({{ post.username }})</span>
+      <h4>{{ post.title }}</h4>
+      <p>{{ post.body }}</p>
+    </div>
+  }
 }

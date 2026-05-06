@@ -12,17 +12,33 @@
     <app-posts-page [userId]="profile.id"></app-posts-page>
 
     <div>
-      <h3 class="title">Інформація</h3>
-      <div class="profile-card_tags">
-        <div class="card-tag email-tag">{{ profile.email }}</div>
-        <div class="card-tag site-tag">{{ profile.city }}</div>
-        <div class="card-tag phone-tag">{{ profile.phone}}</div>
-      </div>
+      @if (profile.email || profile.city || profile.phone) {
+        <h3 class="title">Інформація</h3>
+        <div class="profile-card_tags">
+          @if (profile.email) {
+            <div class="card-tag email-tag">{{ profile.email }}</div>
+          }
 
-      <h3 class="title">Адреса</h3>
-      <div class="profile-card_adress">
-        {{ profile.city }}, {{ profile.street }}
-      </div>
+          @if (profile.city) {
+            <div class="card-tag site-tag">{{ profile.city }}</div>
+          }
+
+          @if (profile.phone) {
+            <div class="card-tag phone-tag">{{ profile.phone }}</div>
+          }
+        </div>
+      }
+
+      @if (profile.city || profile.street) {
+        <h3 class="title">Адреса</h3>
+        <div class="profile-card_adress">
+          {{ profile.city }}
+          @if (profile.city && profile.street) {
+            ,
+          }
+          {{ profile.street }}
+        </div>
+      }
     </div>
   </main>
 }
