@@ -125,3 +125,21 @@ app.delete('/api/unsubscribe', (req, res) => {
         res.json({ success: true });
     });
 });
+
+// реєстрація
+app.post('/api/register', (req, res) => {
+  const { name, username, email, phone, city, street } = req.body;
+  
+  const sql = `
+    INSERT INTO users (name, username, email, phone, city, street) 
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(sql, [name, username, email, phone, city, street], (err, results) => {
+    if (err) {
+      // якщо такий юзер існує - помилка
+      return res.status(500).json({ error: err.message });
+    }
+    res.json({ success: true, id: results.insertId });
+  });
+});

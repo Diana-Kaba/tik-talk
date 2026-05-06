@@ -6,6 +6,7 @@ import { Sidebar } from './pages/sidebar/sidebar';
 import { canActivateAuth } from './auth/auth.guard';
 import { Settings } from './pages/settings/settings';
 import { Logout } from './common/logout/logout';
+import { RegistrationPage } from './pages/registration-page/registration-page';
 
 export const routes: Routes = [
     { path: '', component: Sidebar, canActivate: [canActivateAuth], children: [
@@ -15,4 +16,5 @@ export const routes: Routes = [
         { path: 'logout', component: Logout },
     ]},
     { path: 'login', component: LoginPage },
+    { path: 'registration', component: RegistrationPage }
 ];

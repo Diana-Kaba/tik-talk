@@ -38,10 +38,14 @@
   </label>
 
   @if (isLoginError && form.valid && form.dirty) {
-      <small class="error">Такого користувача не існує</small>
-    }
+    <small class="error">Такого користувача не існує</small>
+  }
 
   <button class="btn" type="submit">Ввійти</button>
+
+  <div>
+    <p>Ще немає акаунту? <a [routerLink]="['/registration']" class="btn-registr">Зареєструватись</a></p>
+  </div>
 </form>
 
 <img src="/assets/imgs/logo.png" alt="logo" />

@@ -64,4 +64,8 @@ export class UsersService {
       `http://localhost:3000/api/unsubscribe?follower_id=${followerId}&followed_id=${followedId}`,
     );
   }
+
+  registerUser(profile: Partial<IUser>) {
+    return this.http.post('http://localhost:3000/api/register', profile);
+  }
 }

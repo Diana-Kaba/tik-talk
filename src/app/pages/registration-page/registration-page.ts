@@ -1,23 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { ProfileHeader } from '../../common/profile-header/profile-header';
-import {
-  FormBuilder,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/usersservice';
 import { IUser } from '../../interfaces/iuser';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IProfileFormControls } from '../../interfaces/iprofile';
 
 @Component({
-  selector: 'app-settings',
-  imports: [ProfileHeader, ReactiveFormsModule, RouterLink],
-  templateUrl: './settings.html',
-  styleUrl: './settings.scss',
+  selector: 'app-registration-page',
+  imports: [ReactiveFormsModule, RouterLink],
+  templateUrl: './registration-page.html',
+  styleUrl: './registration-page.scss',
 })
-export class Settings {
+export class RegistrationPage {
   userService = inject(UsersService);
+  router = inject(Router);
   profile: IUser | null = this.userService.getMe();
   message: string | null = null;
   isSaving = false;
@@ -44,23 +40,24 @@ export class Settings {
     street: this.fb.nonNullable.control('', []),
   });
 
-  constructor() {
-    // pаповнюємо форму при завантаженні
-    if (this.profile) this.form.patchValue(this.profile);
-  }
   onSave() {
-    this.form.markAllAsTouched(); // вивести всі помилки валідації
-    if (this.form.invalid || !this.profile) return;
+    this.form.markAllAsTouched();
+    if (this.form.invalid) return;
 
-    this.userService.changeProfile(this.form.getRawValue()).subscribe((val: IUser | null) => {
-      if (val) {
-        this.profile = val;
-        this.message = 'Профіль успішно створено!';
+    this.userService.registerUser(this.form.getRawValue()).subscribe({
+      next: () => {
+        this.message = 'Акаунт успішно створено!';
         this.isSaving = true;
-      } else {
-        this.message = 'Помилка при створенні профілю. Спробуйте ще раз.';
+
+        // через секунду на login
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 1000);
+      },
+      error: () => {
+        this.message = 'Помилка при реєстрації. Такий користувач уже існує.';
         this.isSaving = false;
-      }
+      },
     });
   }
 }
