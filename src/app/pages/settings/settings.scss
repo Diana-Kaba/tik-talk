@@ -62,3 +62,15 @@
 small.message {
   margin-top: 20px;
 }
+
+.profile-avatar {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hide-input {
+  display: none;
+}

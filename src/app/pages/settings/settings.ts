@@ -1,10 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ProfileHeader } from '../../common/profile-header/profile-header';
-import {
-  FormBuilder,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../services/usersservice';
 import { IUser } from '../../interfaces/iuser';
 import { RouterLink } from '@angular/router';
@@ -62,5 +58,27 @@ export class Settings {
         this.isSaving = false;
       }
     });
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      const userId = this.profile?.id;
+
+      if (userId) {
+        this.userService.uploadAvatar(userId, file).subscribe((res) => {
+          if (this.profile) {
+            this.profile.avatarUrl = res.avatarUrl;
+          }
+        });
+      }
+    }
+  }
+  getAvatarUrl() {
+    if (this.profile && this.profile.avatarUrl) {
+      return `http://localhost:3000${this.profile.avatarUrl}`;
+    }
+    return '/assets/imgs/default.jpg';
   }
 }

@@ -6,5 +6,5 @@ export interface IUser {
   city: string;
   street: string;
   phone: string;
-  website: string;
+  avatarUrl?: string;
 }

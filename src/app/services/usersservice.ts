@@ -68,4 +68,25 @@ export class UsersService {
   registerUser(profile: Partial<IUser>) {
     return this.http.post('http://localhost:3000/api/register', profile);
   }
+
+  uploadAvatar(userId: number, file: File) {
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    return this.http
+      .post<{
+        success: boolean;
+        avatarUrl: string;
+      }>(`http://localhost:3000/api/users/${userId}/avatar`, formData)
+      .pipe(
+        map((res) => {
+          const current = this.getMe();
+          if (current) {
+            current.avatarUrl = res.avatarUrl;
+            this.auth.saveUser(current);
+          }
+          return res;
+        }),
+      );
+  }
 }

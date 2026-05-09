@@ -87,6 +87,19 @@
         <input type="text" class="profile-input" formControlName="street" />
       </label>
     </div>
+    <div class="avatar-container">
+      <img [src]="getAvatarUrl()" alt="Avatar" class="profile-avatar" (click)="fileInput.click()" />
+
+      <input
+        type="file"
+        #fileInput
+        class="hide-input"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+
+      <p>Натисніть на фото, щоб змінити аватар</p>
+    </div>
   </form>
   @if (isSaving === true) {
     <small class="succes message">{{ message }}</small>
