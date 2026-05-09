@@ -39,25 +39,53 @@ export class RegistrationPage {
     city: this.fb.nonNullable.control('', []),
     street: this.fb.nonNullable.control('', []),
   });
+  selectedFile: File | undefined;
+  avatarPreviewUrl: string | undefined;
 
   onSave() {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
 
     this.userService.registerUser(this.form.getRawValue()).subscribe({
-      next: () => {
+      next: (res: any) => {
         this.message = 'Акаунт успішно створено!';
         this.isSaving = true;
 
-        // через секунду на login
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 1000);
+        if (this.selectedFile && res.id) {
+          this.userService.uploadAvatar(res.id, this.selectedFile).subscribe(() => {
+            this.navigateToLogin();
+          });
+        } else this.navigateToLogin();
       },
       error: () => {
-        this.message = 'Помилка при реєстрації. Такий користувач уже існує.';
+        this.message = 'Помилка при реєстрації. Можливо, такий username чи email уже існує.';
         this.isSaving = false;
       },
     });
+  }
+
+  navigateToLogin() {
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1500);
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.avatarPreviewUrl = e.target?.result as string;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  getAvatarUrl() {
+    if (this.avatarPreviewUrl) {
+      return this.avatarPreviewUrl;
+    }
+    return '/assets/imgs/default.jpg';
   }
 }
