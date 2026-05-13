@@ -9,4 +9,12 @@ import { IUser } from '../../interfaces/iuser';
 })
 export class ProfileHeader {
   @Input() profile: IUser | null = null;
+  avatarPreviewUrl: string | undefined;
+
+  getAvatarUrl() {
+    if (this.profile && this.profile.avatarUrl) {
+      return `http://localhost:3000${this.profile.avatarUrl}`;
+    }
+    return '/assets/imgs/default.jpg';
+  }
 }
