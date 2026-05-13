@@ -4,10 +4,11 @@ import { UsersService } from '../../services/usersservice';
 import { IUser } from '../../interfaces/iuser';
 import { Router, RouterLink } from '@angular/router';
 import { IProfileFormControls } from '../../interfaces/iprofile';
+import { SvgIcon } from '../../common/svg-icon/svg-icon';
 
 @Component({
   selector: 'app-registration-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, SvgIcon],
   templateUrl: './registration-page.html',
   styleUrl: './registration-page.scss',
 })
@@ -39,8 +40,8 @@ export class RegistrationPage {
     city: this.fb.nonNullable.control('', []),
     street: this.fb.nonNullable.control('', []),
   });
-  selectedFile: File | undefined;
-  avatarPreviewUrl: string | undefined;
+  selectedFile!: File | null;
+  avatarPreviewUrl!: string | null;
 
   onSave() {
     this.form.markAllAsTouched();
@@ -87,5 +88,14 @@ export class RegistrationPage {
       return this.avatarPreviewUrl;
     }
     return '/assets/imgs/default.jpg';
+  }
+
+  onRemoveAvatar() {
+    const isAgree: boolean = confirm('Видалати аватарку?');
+
+    if (isAgree) {
+      this.selectedFile = null;
+      this.avatarPreviewUrl = null;
+    }
   }
 }

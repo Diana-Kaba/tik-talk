@@ -65,14 +65,41 @@ small.message {
   margin-top: 20px;
 }
 
+.hide-input {
+  display: none;
+}
+
+.avatar-container {
+  position: relative;
+  width: fit-content;
+}
+
 .profile-avatar {
   cursor: pointer;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  display: block;
 }
 
-.hide-input {
-  display: none;
+.delete-avatar-btn {
+  position: absolute;
+  bottom: 52px;
+  right: -2px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.delete-icon {
+  width: 18px;
+  height: 18px;
 }
