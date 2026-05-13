@@ -19,6 +19,7 @@ export class SidebarComponent {
   });
 
   me: IUser | null = null;
+  avatarPreviewUrl: string | undefined;
 
   ngOnInit() {
     this.me = this.usersService.getMe();
@@ -34,5 +35,12 @@ export class SidebarComponent {
         this.users = val;
       });
     }
+  }
+
+  getAvatarUrl() {
+    if (this.me && this.me.avatarUrl) {
+      return `http://localhost:3000${this.me.avatarUrl}`;
+    }
+    return '/assets/imgs/default.jpg';
   }
 }

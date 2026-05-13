@@ -22,7 +22,10 @@
 
 <footer class="sidebar-footer">
   @if (me) {
-    <strong class="medium-text"> {{ me.name }} </strong>
+    <div class="avatar-container">
+      <img [src]="getAvatarUrl()" alt="Avatar" class="profile-avatar" [routerLink]="['/profile']" />
+    </div>
+    <strong class="medium-text" [routerLink]="['/profile']"> {{ me.name }} </strong>
     <div>
       <a [routerLink]="['/logout']" class="logout-btn">
         <svg icon="logout" class="logout-icon"></svg>
