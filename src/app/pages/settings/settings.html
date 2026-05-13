@@ -90,6 +90,11 @@
     <div class="avatar-container">
       <img [src]="getAvatarUrl()" alt="Avatar" class="profile-avatar" (click)="fileInput.click()" />
 
+      @if (profile?.avatarUrl) {
+        <button class="delete-avatar-btn" type="button" (click)="onDeleteAvatar()">
+          <svg icon="delete" class="delete-icon"></svg>
+        </button>
+      }
       <input
         type="file"
         #fileInput

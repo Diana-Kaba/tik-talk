@@ -181,3 +181,14 @@ app.post('/api/register', (req, res) => {
     res.json({ success: true, id: results.insertId });
   });
 });
+
+// видалити аву
+app.delete('/api/users/:id/avatar', (req, res) => {
+  const userId = req.params.id;
+  const sql = 'UPDATE users SET avatarUrl = NULL WHERE id = ?';
+
+  db.query(sql, [userId], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true });
+  });
+});

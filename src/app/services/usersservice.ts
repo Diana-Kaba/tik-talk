@@ -89,4 +89,19 @@ export class UsersService {
         }),
       );
   }
+
+  deleteAvatar(userId: number) {
+    return this.http
+      .delete<{ success: boolean }>(`http://localhost:3000/api/users/${userId}/avatar`)
+      .pipe(
+        map((res) => {
+          const current = this.getMe();
+          if (current) {
+            current.avatarUrl = undefined;
+            this.auth.saveUser(current);
+          }
+          return res;
+        }),
+      );
+  }
 }

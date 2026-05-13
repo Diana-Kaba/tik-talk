@@ -5,10 +5,11 @@ import { UsersService } from '../../services/usersservice';
 import { IUser } from '../../interfaces/iuser';
 import { RouterLink } from '@angular/router';
 import { IProfileFormControls } from '../../interfaces/iprofile';
+import { SvgIcon } from '../../common/svg-icon/svg-icon';
 
 @Component({
   selector: 'app-settings',
-  imports: [ProfileHeader, ReactiveFormsModule, RouterLink],
+  imports: [ProfileHeader, ReactiveFormsModule, RouterLink, SvgIcon],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
 })
@@ -51,10 +52,10 @@ export class Settings {
     this.userService.changeProfile(this.form.getRawValue()).subscribe((val: IUser | null) => {
       if (val) {
         this.profile = val;
-        this.message = 'Профіль успішно створено!';
+        this.message = 'Профіль успішно збережено!';
         this.isSaving = true;
       } else {
-        this.message = 'Помилка при створенні профілю. Спробуйте ще раз.';
+        this.message = 'Помилка при збереженні профілю. Спробуйте ще раз.';
         this.isSaving = false;
       }
     });
@@ -80,5 +81,19 @@ export class Settings {
       return `http://localhost:3000${this.profile.avatarUrl}`;
     }
     return '/assets/imgs/default.jpg';
+  }
+
+  onDeleteAvatar() {
+    const isAgree: boolean = confirm("Видалити аватар?");
+    if (this.profile && this.profile.avatarUrl && isAgree) {
+      this.userService.deleteAvatar(this.profile.id).subscribe({
+        next: () => {
+          if (this.profile) this.profile.avatarUrl = undefined;
+        },
+        error: (err) => {
+          console.error('Помилка видалення аватара', err);
+        },
+      });
+    }
   }
 }
