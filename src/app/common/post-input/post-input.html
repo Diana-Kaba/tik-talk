@@ -2,13 +2,23 @@
   <div class="avatar-container">
     <img [src]="getAvatarUrl()" alt="Avatar" class="profile-avatar" />
   </div>
-  <input
-    type="text"
-    placeholder="Напишіть пост..."
-    id="postContent"
-    [(ngModel)]="postText"
-    (keyup.enter)="onSendPost()"
-  />
+  <div class="inputs">
+    <input
+      type="text"
+      placeholder="Тема посту"
+      class="base-input title-input"
+      [(ngModel)]="postTitle"
+    />
+    <input
+      type="text"
+      placeholder="Напишіть пост..."
+      id="postContent"
+      class="base-input"
+      [(ngModel)]="postText"
+      (keyup.enter)="onSendPost()"
+    />
+  </div>
+
   <button class="btn-send" (click)="onSendPost()">
     <svg icon="send" class="send"></svg>
   </button>

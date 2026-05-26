@@ -1,6 +1,6 @@
 .create-post {
   width: 690px;
-  height: 80px;
+  min-height: 80px;
   border: 1px solid var(--light-color);
   background-color: var(--dark-color);
   display: grid;
@@ -8,7 +8,13 @@
   align-items: center;
   gap: 12px;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 10px 20px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .btn-send {
@@ -27,7 +33,7 @@
   height: 16px;
 }
 
-#postContent {
+.base-input {
   background-color: var(--dark-color);
   border: none;
   font-family: 'JetBrains Mono';
@@ -38,6 +44,10 @@
   &:focus {
     outline: 1px solid var(--primary-color);
   }
+}
+
+.title-input {
+  color: var(--primary-color);
 }
 
 .profile-avatar {

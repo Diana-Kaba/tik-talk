@@ -32,11 +32,10 @@ export class PostInput {
     if (!this.postText.trim() || !this.me) {
       return;
     }
-    const defaultTitle = 'Title';
 
     const newPost = {
       user_id: this.me.id,
-      title: defaultTitle,
+      title: this.postTitle,
       body: this.postText,
     };
 
