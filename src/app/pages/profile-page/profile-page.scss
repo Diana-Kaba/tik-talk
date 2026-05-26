@@ -35,6 +35,18 @@
   grid-template-columns: 1fr 350px;
 }
 
+.posts-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .title {
   margin-bottom: 16px;
   font-style: 18px;

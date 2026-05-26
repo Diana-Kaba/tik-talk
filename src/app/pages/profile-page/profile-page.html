@@ -9,9 +9,12 @@
   </header>
 
   <main class="profile-body">
-    <app-posts-page [userId]="profile.id"></app-posts-page>
+    <div class="posts-column">
+      <app-post-input></app-post-input>
+      <app-posts-page [userId]="profile.id"></app-posts-page>
+    </div>
 
-    <div>
+    <div class="info-column">
       @if (profile.email || profile.city || profile.phone) {
         <h3 class="title">Інформація</h3>
         <div class="profile-card_tags">

@@ -1,0 +1,53 @@
+.create-post {
+  width: 690px;
+  height: 80px;
+  border: 1px solid var(--light-color);
+  background-color: var(--dark-color);
+  display: grid;
+  grid-template-columns: 32px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.btn-send {
+  width: 44px;
+  height: 44px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.send {
+  width: 16px;
+  height: 16px;
+}
+
+#postContent {
+  background-color: var(--dark-color);
+  border: none;
+  font-family: 'JetBrains Mono';
+  font-size: 14px;
+  padding: 10px;
+
+  &:focus {
+    outline: 1px solid var(--primary-color);
+  }
+}
+
+.profile-avatar {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
