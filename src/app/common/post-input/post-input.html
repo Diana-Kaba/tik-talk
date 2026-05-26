@@ -1,25 +1,25 @@
-<div class="create-post">
+<form class="create-post" [formGroup]="postForm" (ngSubmit)="onSendPost()">
   <div class="avatar-container">
     <img [src]="getAvatarUrl()" alt="Avatar" class="profile-avatar" />
   </div>
   <div class="inputs">
     <input
       type="text"
-      placeholder="Тема посту"
+      placeholder="Тема (необов'язкова)"
       class="base-input title-input"
-      [(ngModel)]="postTitle"
+      formControlName="title"
     />
     <input
       type="text"
       placeholder="Напишіть пост..."
       id="postContent"
       class="base-input"
-      [(ngModel)]="postText"
+      formControlName="text"
       (keyup.enter)="onSendPost()"
     />
   </div>
 
-  <button class="btn-send" (click)="onSendPost()">
+  <button class="btn-send" type="submit" [disabled]="postForm.invalid">
     <svg icon="send" class="send"></svg>
   </button>
-</div>
+</form>

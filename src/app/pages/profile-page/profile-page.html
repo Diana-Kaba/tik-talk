@@ -10,8 +10,8 @@
 
   <main class="profile-body">
     <div class="posts-column">
-      <app-post-input></app-post-input>
-      <app-posts-page [userId]="profile.id"></app-posts-page>
+      <app-post-input (postCreated)="postsPage.ngOnInit()"></app-post-input>
+      <app-posts-page #postsPage [userId]="profile.id"></app-posts-page>
     </div>
 
     <div class="info-column">
