@@ -6,9 +6,12 @@
         <span class="subtitle">{{ user.username }}</span>
       </div>
     </div>
-
+    @if(user.city && user.street) {
     <div class="profile-card_adress">{{ user.city }}, {{ user.street }}</div>
-
+    }
+    @else {
+      <div class="profile-card_adress"> </div>
+    }
     <div class="profile-card_tags">
       <div class="card-tag email-tag">{{ user.email }}</div>
       <div class="card-tag phone-tag">{{ user.phone }}</div>
