@@ -104,4 +104,11 @@ export class UsersService {
         }),
       );
   }
+
+  createPost(postData: { user_id: number; title: string; body: string }) {
+    return this.http.post<{ success: boolean; id: number }>(
+      'http://localhost:3000/api/posts',
+      postData,
+    );
+  }
 }

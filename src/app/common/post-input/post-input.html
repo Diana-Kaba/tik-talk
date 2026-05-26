@@ -2,8 +2,14 @@
   <div class="avatar-container">
     <img [src]="getAvatarUrl()" alt="Avatar" class="profile-avatar" />
   </div>
-  <input type="text" placeholder="Напишіть пост..." id="postContent" />
-    <button class="btn-send">
-      <svg icon="send" class="send"></svg>
-    </button>
+  <input
+    type="text"
+    placeholder="Напишіть пост..."
+    id="postContent"
+    [(ngModel)]="postText"
+    (keyup.enter)="onSendPost()"
+  />
+  <button class="btn-send" (click)="onSendPost()">
+    <svg icon="send" class="send"></svg>
+  </button>
 </div>

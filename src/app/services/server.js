@@ -192,3 +192,14 @@ app.delete('/api/users/:id/avatar', (req, res) => {
     res.json({ success: true });
   });
 });
+
+// створити пост
+app.post('/api/posts', (req, res) => {
+  const { user_id, title, body } = req.body;
+
+  const sql = 'INSERT INTO posts (user_id, title, body, created_at) VALUES (?, ?, ?, NOW())';
+  db.query(sql, [user_id, title, body], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true, id: results.insertId });
+  });
+});
