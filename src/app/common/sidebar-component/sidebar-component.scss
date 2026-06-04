@@ -121,3 +121,67 @@
     opacity: 0.7;
   }
 }
+
+@media (max-width: 992px) {
+  :host {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0 20px;
+    background: var(--dark-color);
+    border-top: 1px solid var(--hover-color);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: block;
+    width: auto;
+    height: 36px;
+    margin: 0;
+  }
+
+  .list-subscribers,
+  .main-menu {
+    display: none;
+  }
+
+  .sidebar-footer {
+    height: 100%;
+    width: auto;
+    padding: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+
+    .medium-text {
+      display: none;
+    }
+
+    .avatar-container {
+      display: flex;
+      align-items: center;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .settings-btn svg,
+    .logout-btn svg {
+      width: 24px;
+      height: 24px;
+      margin-top: 0;
+      display: block;
+    }
+  }
+}

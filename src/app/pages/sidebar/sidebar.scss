@@ -1,4 +1,10 @@
 :host {
-    display: grid;
-    grid-template-columns: 300px 1fr;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    padding-bottom: 70px;
+  }
 }
