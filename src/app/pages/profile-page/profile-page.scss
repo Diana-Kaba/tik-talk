@@ -59,3 +59,27 @@
   gap: 8px;
   align-items: center;
 }
+
+@media (max-width: 992px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .settings-btn {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .profile-body {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 16px;
+  }
+
+  .info-column {
+    order: -1;
+  }
+}
