@@ -6,6 +6,9 @@
       <span>{{ post.name }} ({{ post.username }})</span>
       <h4>{{ post.title }}</h4>
       <p>{{ post.body }}</p>
+      <button class="delete-post-btn" type="button" (click)="onDeletePost(post.id)">
+        <svg icon="delete" class="delete-icon"></svg>
+      </button>
     </div>
   }
 }

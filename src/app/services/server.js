@@ -203,3 +203,14 @@ app.post('/api/posts', (req, res) => {
     res.json({ success: true, id: results.insertId });
   });
 });
+
+// видалити пост
+app.delete('/api/posts/:id', (req, res) => {
+  const postId = req.params.id;
+  const sqlQuery = 'DELETE FROM posts WHERE id = ?';
+
+  db.query(sqlQuery, [postId], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true, id: postId });
+  });
+});

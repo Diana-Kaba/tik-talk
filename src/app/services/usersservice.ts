@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from '../auth/auth';
-import { map, of, Subject } from 'rxjs';
+import { map, Observable, of, Subject } from 'rxjs';
 import { IPost } from '../interfaces/ipost';
 
 @Injectable({
@@ -110,5 +110,9 @@ export class UsersService {
       'http://localhost:3000/api/posts',
       postData,
     );
+  }
+
+  deletePost(postId: number) {
+    return this.http.delete(`http://localhost:3000/api/posts/${postId}`);
   }
 }

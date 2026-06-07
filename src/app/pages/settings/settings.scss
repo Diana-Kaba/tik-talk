@@ -88,8 +88,8 @@ small.message {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  border: 2px solid #fff;
-  background: #000;
+  border: 2px solid var(--light-color);
+  background: var(--dark-color);
   display: flex;
   align-items: center;
   justify-content: center;
