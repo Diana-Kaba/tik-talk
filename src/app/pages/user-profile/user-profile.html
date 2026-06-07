@@ -1,0 +1,49 @@
+@if (user) {
+  <header class="profile-header">
+    <app-profile-header [profile]="user"></app-profile-header>
+
+    <div class="profile-card_btns">
+      @if (profile && profile.id !== user.id) {
+        <button class="btn" (click)="toggleSubscription()">
+          {{ isSubscribed ? 'Відписатися' : 'Підписатися' }}
+        </button>
+      }
+    </div>
+  </header>
+
+  <main class="profile-body">
+    <div class="posts-column">
+      <app-posts-page #postsPage [userId]="user.id"></app-posts-page>
+    </div>
+
+    <div class="info-column">
+      @if (user.email || user.city || user.phone) {
+        <h3 class="title">Інформація</h3>
+        <div class="profile-card_tags">
+          @if (user.email) {
+            <div class="card-tag email-tag">{{ user.email }}</div>
+          }
+
+          @if (user.city) {
+            <div class="card-tag site-tag">{{ user.city }}</div>
+          }
+
+          @if (user.phone) {
+            <div class="card-tag phone-tag">{{ user.phone }}</div>
+          }
+        </div>
+      }
+
+      @if (user.city || user.street) {
+        <h3 class="title">Адреса</h3>
+        <div class="profile-card_adress">
+          {{ user.city }}
+          @if (user.city && user.street) {
+            ,
+          }
+          {{ user.street }}
+        </div>
+      }
+    </div>
+  </main>
+}

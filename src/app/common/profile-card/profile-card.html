@@ -2,8 +2,8 @@
   <div class="profile-card">
     <div class="avatar-name">
       <div class="profile-card_name">
-        <strong class="h6">{{ user.name }}</strong>
-        <span class="subtitle">{{ user.username }}</span>
+        <strong class="h6" [routerLink]="['/user', user.id]">{{ user.name }}</strong>
+        <span class="subtitle" [routerLink]="['/user', user.id]">{{ user.username }}</span>
       </div>
     </div>
     @if(user.city && user.street) {

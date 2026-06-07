@@ -115,4 +115,8 @@ export class UsersService {
   deletePost(postId: number) {
     return this.http.delete(`http://localhost:3000/api/posts/${postId}`);
   }
+
+  getUserById(id: number) {
+    return this.http.get<IUser>(`http://localhost:3000/api/users/${id}`);
+  }
 }

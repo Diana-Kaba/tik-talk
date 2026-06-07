@@ -1,10 +1,11 @@
 import { Component, inject, Input } from '@angular/core';
 import { IUser } from '../../interfaces/iuser';
 import { UsersService } from '../../services/usersservice';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile-card',
-  imports: [],
+  imports: [RouterLink],
   standalone: true,
   templateUrl: './profile-card.html',
   styleUrl: './profile-card.scss',

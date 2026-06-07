@@ -214,3 +214,14 @@ app.delete('/api/posts/:id', (req, res) => {
     res.json({ success: true, id: postId });
   });
 });
+
+// повернути пост за id
+app.get('/api/users/:id', (req, res) => {
+  const userId = req.params.id;
+  const sqlQuery = 'SELECT id, name, username, email, phone, city, street, avatarUrl FROM users WHERE id = ?';
+
+  db.query(sqlQuery, [userId], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(result[0]);
+  });
+});
