@@ -16,6 +16,11 @@
   display: grid;
   gap: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--primary-color);
+  }
 }
 
 .h6 {
