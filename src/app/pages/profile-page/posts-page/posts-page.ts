@@ -2,6 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import { UsersService } from '../../../services/usersservice';
 import { IPost } from '../../../interfaces/ipost';
 import { SvgIcon } from '../../../common/svg-icon/svg-icon';
+import { IUser } from '../../../interfaces/iuser';
 
 @Component({
   selector: 'app-posts-page',
@@ -13,8 +14,11 @@ export class PostsPage {
   userService = inject(UsersService);
   posts: IPost[] = [];
   @Input() userId?: number;
+  me: IUser | null = null;
 
   ngOnInit() {
+    this.me = this.userService.getMe();
+
     this.userService.getTestPosts().subscribe((val) => {
       if (this.userId) this.posts = val.filter((post) => post.user_id === this.userId);
       else this.posts = val;
