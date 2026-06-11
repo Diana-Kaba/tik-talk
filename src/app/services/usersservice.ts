@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { IUser } from '../interfaces/iuser';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from '../auth/auth';
-import { map, Observable, of, Subject } from 'rxjs';
+import { map, Subject } from 'rxjs';
 import { IPost } from '../interfaces/ipost';
 
 @Injectable({
